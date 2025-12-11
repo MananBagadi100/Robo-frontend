@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 import { generatePost } from "./utils/api";
+import * as motion from "motion/react-client"
+import { scale } from "motion";
 
 function App() {
     const [prompt, setPrompt] = useState("");
@@ -28,6 +30,9 @@ function App() {
             <h1 className="app-title">AI Social Media Post Creator</h1>
 
             <div className="card">
+                <div className="subheading-text-wrapper">
+                  <span className="subheading-text">Create your next social media post with just One Click !</span>
+                </div>
                 <textarea
                     className="prompt-input"
                     placeholder="Describe your idea..."
@@ -35,13 +40,18 @@ function App() {
                     onChange={(e) => setPrompt(e.target.value)}
                 />
 
-                <button
-                    className="generate-btn"
-                    onClick={handleGenerate}
-                    disabled={loading}
-                >
-                    {loading ? "Generating..." : "Generate"}
-                </button>
+                <div className="generate-btn-wrapper">
+                  <motion.button
+                      whileHover={{scale:1.1}}
+                      whileTap={{scale:0.8}}
+                      transition={{duration:0.2,ease:"easeOut"}}
+                      className="generate-btn"
+                      onClick={handleGenerate}
+                      disabled={loading}
+                  >
+                      {loading ? "Generating..." : "Generate"}
+                  </motion.button>
+                </div>
             </div>
 
             {result && (

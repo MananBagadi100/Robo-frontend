@@ -29,11 +29,32 @@ html, body {
 
 /* card */
 .card {
+    display: flex;
+    flex-direction: column;
     background: #ffffff;
     padding: 20px;
     border-radius: 14px;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
     margin-bottom: 30px;
+    gap: 8px;
+}
+
+.subheading-text-wrapper {
+  display: flex;
+  width: 100%;
+  font-size: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+}
+
+.subheading-text {
+    background: linear-gradient(135deg, #2280fb, #1443a2);
+    background-clip: text;             /* Firefox */
+    -webkit-background-clip: text;     /* Chrome, Safari */
+    -webkit-text-fill-color: transparent;
+    font-weight: 500;
 }
 
 .prompt-input {
@@ -52,18 +73,29 @@ html, body {
     border-color: #0d6efd;
 }
 
-/* ----- BUTTON ----- */
+/* To submit details to backend */
+.generate-btn-wrapper {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
 .generate-btn {
+  display: flex;
     background: #0d6efd;
     color: white;
     padding: 12px 20px;
     font-size: 16px;
     border-radius: 10px;
     transition: 0.2s;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
 }
 
 .generate-btn:hover {
-    background: #0b5ed7;
+    background: #0c59cd;
 }
 
 .generate-btn:disabled {
