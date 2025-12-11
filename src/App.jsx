@@ -3,6 +3,7 @@ import "./App.css";
 import { generatePost } from "./utils/api";
 import * as motion from "motion/react-client"
 import { scale } from "motion";
+import RegenerateIcon from './assets/add.png'
 
 function App() {
     const [prompt, setPrompt] = useState("");
@@ -102,6 +103,18 @@ function App() {
                         <button className="action-btn" onClick={handleDownload}>
                             Download Image
                         </button>
+                    </div>
+
+                    <div className="regenerate-cta-btn-wrapper">
+                        <motion.button 
+                            whileHover={{scale:1.1}}
+                            whileTap={{scale:0.8}}
+                            transition={{duration:0.2,ease:"easeOut"}}
+                            className="regenerate-cta-btn"
+                        >
+                            <img className='regenerate-btn-icon' src={RegenerateIcon} alt="Image not found" />
+                            <div>Regenerate</div>
+                        </motion.button>
                     </div>
                 </div>
             )}
