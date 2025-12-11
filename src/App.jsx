@@ -47,9 +47,22 @@ function App() {
     };
     return (
         <div className="app-container">
-            <h1 className="app-title">AI Social Media Post Creator</h1>
+            <motion.h1 
+                initial={{opacity:0,scale:0.8}}
+                animate={{opacity:1,scale:1}}
+                transition={{duration:1}}
+                className="app-title"
+            >
+                AI Social Media Post Creator
+            </motion.h1>
 
-            <div className="card">
+            <motion.div 
+                initial={{opacity:0,y:30}}
+                animate={{opacity:1,y:0}}
+                transition={{duration:0.8,delay:0.2}}
+                viewport={{once:true}}
+                className="card"
+            >
                 <div className="subheading-text-wrapper">
                   <span className="subheading-text">Create your next social media post with just One Click !</span>
                 </div>
@@ -72,7 +85,7 @@ function App() {
                       {loading ? "Generating..." : "Generate"}
                   </motion.button>
                 </div>
-            </div>
+            </motion.div>
 
             {result && (
                 <div className="result-card">
@@ -103,18 +116,6 @@ function App() {
                         <button className="action-btn" onClick={handleDownload}>
                             Download Image
                         </button>
-                    </div>
-
-                    <div className="regenerate-cta-btn-wrapper">
-                        <motion.button 
-                            whileHover={{scale:1.1}}
-                            whileTap={{scale:0.8}}
-                            transition={{duration:0.2,ease:"easeOut"}}
-                            className="regenerate-cta-btn"
-                        >
-                            <img className='regenerate-btn-icon' src={RegenerateIcon} alt="Image not found" />
-                            <div>Regenerate</div>
-                        </motion.button>
                     </div>
                 </div>
             )}
