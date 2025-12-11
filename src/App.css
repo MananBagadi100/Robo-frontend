@@ -137,3 +137,32 @@ html, body {
     border-radius: 12px;
     margin-top: 10px;
 }
+
+.actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.action-btn {
+    padding: 10px 16px;
+    color: #007bff;
+    background-color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s ease;
+    border: 1px solid rgba(0,0,0,0.5);
+}
+
+.action-btn:hover {
+    background: #007bff;
+    color: white;
+    transform: scale(1.05);
+}
+
+.action-btn:active {
+    transform: scale(0.92);
+}

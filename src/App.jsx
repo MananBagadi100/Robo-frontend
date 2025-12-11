@@ -10,7 +10,7 @@ function App() {
     const [result, setResult] = useState(null);
 
     const handleGenerate = async () => {
-        if (!prompt.trim()) return;
+        if (!prompt.trim()) return; //to remove whitespaces at starting and end
 
         setLoading(true);
         setResult(null);
@@ -24,7 +24,26 @@ function App() {
 
         setLoading(false);
     };
-
+    //handle copy captions
+    const handleCopyCaption = () => {
+        if (!result) return;
+        navigator.clipboard.writeText(result.caption);
+        alert("Caption copied!");
+    };
+    // copy hashtags
+    const handleCopyHashtags = () => {
+        if (!result) return;
+        navigator.clipboard.writeText(result.hashtags.join(" "));
+        alert("Hashtags copied!");
+    };
+    //download image
+    const handleDownload = () => {
+        if (!result) return;
+        const link = document.createElement("a");
+        link.href = `data:image/png;base64,${result.imageBase64}`;
+        link.download = "post.png";
+        link.click();
+    };
     return (
         <div className="app-container">
             <h1 className="app-title">AI Social Media Post Creator</h1>
@@ -71,6 +90,19 @@ function App() {
                         src={`data:image/png;base64,${result.imageBase64}`}
                         alt="Generated"
                     />
+                    <div className="actions">
+                        <button className="action-btn" onClick={handleCopyCaption}>
+                            Copy Caption
+                        </button>
+
+                        <button className="action-btn" onClick={handleCopyHashtags}>
+                            Copy Hashtags
+                        </button>
+
+                        <button className="action-btn" onClick={handleDownload}>
+                            Download Image
+                        </button>
+                    </div>
                 </div>
             )}
         </div>
