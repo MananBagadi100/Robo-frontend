@@ -1,18 +1,155 @@
-# React + Vite
+# AI Social Media Post Creator (Frontend)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A clean, fast, and responsive React-based frontend for generating AI-powered social media posts using captions, hashtags, and images.  
+This project was built as part of an AI Builder assignment and is fully deployed on Vercel.
 
-Currently, two official plugins are available:
+## 🚀 Live Demo
+Frontend URL: https://robo-frontend-teal.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- 🔹 Generate AI-powered captions, hashtags, and posters with one click  
+- 🔹 Clean and modern UI with smooth animations  
+- 🔹 Download generated image as PNG  
+- 🔹 Copy caption & hashtags instantly  
+- 🔹 Fully responsive and mobile-friendly  
+- 🔹 Framer Motion animations  
+- 🔹 Safe API communication with backend
 
-Note: This will impact Vite dev & build performances.
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **React (Vite)**
+- **CSS (Custom styling)**
+- **Framer Motion**
+- **Axios**
+- **OpenAI API (via backend)**
+- **Vercel Deployment**
+
+---
+
+## 📁 Folder Structure
+
+```
+frontend/
+│
+├── public/
+├── src/
+│   ├── assets/          # Icons and images
+│   ├── styles/          # Global and component styles
+│   ├── utils/
+│   │   └── api.js       # Axios client to backend
+│   ├── App.jsx          # Main component
+│   ├── App.css          # Global styles
+│   └── main.jsx         # Entry point
+│
+├── .gitignore
+├── index.html
+├── package.json
+└── vite.config.js
+```
+
+---
+
+## ⚙️ Setup Instructions (Local Development)
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/MananBagadi100/Robo-frontend
+cd frontend
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Create Environment File
+
+Create a `.env` file in the root:
+
+```
+VITE_API_BASE=https://robo-backend.vercel.app/
+```
+
+Example:
+
+```
+VITE_API_BASE=https://your-backend.vercel.app
+```
+
+### 4. Start Development Server
+
+```bash
+npm run dev
+```
+
+Vite will start the frontend on:
+
+```
+http://localhost:5173
+```
+
+---
+
+## 🔗 Backend Integration
+
+The frontend talks to the backend using the value in:
+
+```
+VITE_API_BASE
+```
+
+Requests are sent through `/utils/api.js`.
+
+Make sure your backend is live before running the frontend.
+
+---
+
+## 🧪 Build for Production
+
+```bash
+npm run build
+```
+
+Preview the production build locally:
+
+```bash
+npm run preview
+```
+
+---
+
+## ☁️ Deployment (Vercel)
+
+1. Push code to GitHub  
+2. Import the frontend repo in Vercel  
+3. Add environment variable:  
+   ```
+   VITE_API_BASE=https://robo-backend.vercel.app/
+   ```
+4. Deploy 🎉
+
+---
+
+## 📄 Assignment Summary
+
+This frontend is part of a full-stack AI-powered image + caption generator.  
+It demonstrates:
+
+- Strong UI/UX design  
+- Smooth animations & responsiveness  
+- Clean API integration  
+- Practical AI usage with real-world deployment  
+- Production-ready build workflow  
+
+---
+
+## 👤 Author  
+Manan Bagadi
+
