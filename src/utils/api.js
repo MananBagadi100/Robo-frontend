@@ -1,7 +1,6 @@
-export const API_BASE = "http://localhost:3000/api/ai";
-
+export const API_BASE = import.meta.env.VITE_API_BASE;
 export async function generatePost(prompt) {
-    const response = await fetch(`${API_BASE}/generate`, {
+    const response = await fetch(`${API_BASE}/api/ai/generate`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

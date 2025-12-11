@@ -6,7 +6,6 @@ dist/
 
 # Local environment
 .env
-.env.local
 
 # Logs
 npm-debug.log*
