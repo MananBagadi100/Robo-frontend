@@ -1,16 +1,7 @@
 export const API_BASE = import.meta.env.VITE_API_BASE;
+import axios from "axios";
 export async function generatePost(prompt) {
-    const response = await fetch(`${API_BASE}/api/ai/generate`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ prompt }),
-    });
-
-    if (!response.ok) {
-        throw new Error("Failed to generate post");
-    }
-
-    return response.json();
+    const response = await axios.post(`${API_BASE}/api/ai/generate`,{prompt})
+    console.log('the open ai api response is ',response.data)
+    return response
 }

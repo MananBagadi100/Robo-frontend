@@ -73,6 +73,11 @@ html, body {
     border-color: #0d6efd;
 }
 
+.server-error-msg,
+.prompt-error-msg {
+    color: rgb(223, 0, 0);
+    margin-bottom: 12px;
+}
 /* To submit details to backend */
 .generate-btn-wrapper {
   display: flex;

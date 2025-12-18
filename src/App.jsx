@@ -8,21 +8,34 @@ import RegenerateIcon from './assets/add.png'
 function App() {
     const [prompt, setPrompt] = useState("");
     const [loading, setLoading] = useState(false);
-    const [result, setResult] = useState(null);
+    const [promptLengthError , setPromptLengthError] = useState(false)
+    const [result, setResult] = useState(null); //to store the result response (if api successful)
+    const [serverError , setServerError] = useState('') //state to store server error (if any)
 
     const handleGenerate = async () => {
         if (!prompt.trim()) return; //to remove whitespaces at starting and end
 
+        if (prompt.length < 20) {
+            setPromptLengthError(true)
+            return     //do not send req if prompt has less than 20 charecters
+        }
         setLoading(true);
-        setResult(null);
+        setResult(null);        //reset the result if re-prompting
 
         try {
-            const data = await generatePost(prompt);
-            setResult(data);
-        } catch (error) {
-            console.error(error);
+            const response = await generatePost(prompt);
+            if (response.status === 200) {       // If api successful
+                setResult(response.data)
+            }
+        } 
+        catch (error) {
+            if (error.response) {
+                setServerError(error.response.data.msg)
+            }
+            else {
+                setServerError('Something went wrong !')
+            }
         }
-
         setLoading(false);
     };
     //handle copy captions
@@ -45,6 +58,7 @@ function App() {
         link.download = "post.png";
         link.click();
     };
+    console.log('the server error is ',serverError)
     return (
         <div className="app-container">
             <motion.h1 
@@ -73,11 +87,19 @@ function App() {
                     onChange={(e) => setPrompt(e.target.value)}
                 />
 
+                {promptLengthError ? 
+                    <div className="prompt-error-msg">Prompt must have minimum 20 charecters</div> 
+                    : '' }
+
+                {serverError && (
+                    <div className="server-error-msg">{serverError}</div>
+                )}
+
                 <div className="generate-btn-wrapper">
                   <motion.button
                       whileHover={{scale:1.1}}
                       whileTap={{scale:0.8}}
-                      transition={{duration:0.2,ease:"easeOut"}}
+                      transition={{duration:0.1,ease:"easeOut"}}
                       className="generate-btn"
                       onClick={handleGenerate}
                       disabled={loading}
@@ -87,7 +109,8 @@ function App() {
                 </div>
             </motion.div>
 
-            {result && (
+            { /* Only rendered when backend gives response */}
+            {result && (       
                 <div className="result-card">
                     <h2 className="caption">{result.caption}</h2>
 
