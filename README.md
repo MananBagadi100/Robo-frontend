@@ -1,33 +1,30 @@
-# AI Social Media Post Creator (Frontend)
+# AI Social Media Post Creator – Frontend (React + Vite)
 
-A clean, fast, and responsive React-based frontend for generating AI-powered social media posts using captions, hashtags, and images.  
-This project was built as part of an AI Builder assignment and is fully deployed on Vercel.
+## 🔗 Links
 
-## 🚀 Live Demo
-Frontend URL: https://robo-frontend-teal.vercel.app/
+- **Live Demo:** [https://robo-frontend-teal.vercel.app/](https://robo-frontend-teal.vercel.app/)
+- **Frontend Repo:** [https://github.com/MananBagadi100/Robo-frontend](https://github.com/MananBagadi100/Robo-frontend)
+- **Backend Repo:** [https://github.com/MananBagadi100/Robo-backend](https://github.com/MananBagadi100/Robo-backend)
 
----
+This is the **frontend** for the AI-powered Social Media Post Creator application.  
+It provides a simple, clean UI where users can enter a prompt and generate:
 
-## ✨ Features
+- AI-generated **caption**
+- AI-generated **hashtags**
+- AI-generated **image**
 
-- 🔹 Generate AI-powered captions, hashtags, and posters with one click  
-- 🔹 Clean and modern UI with smooth animations  
-- 🔹 Download generated image as PNG  
-- 🔹 Copy caption & hashtags instantly  
-- 🔹 Fully responsive and mobile-friendly  
-- 🔹 Framer Motion animations  
-- 🔹 Safe API communication with backend
+The frontend communicates with a Node.js + Express backend via REST APIs and displays
+both successful responses and error messages returned by the backend.
 
 ---
 
-## 🛠️ Tech Stack
+## 🚀 Tech Stack
 
-- **React (Vite)**
-- **CSS (Custom styling)**
-- **Framer Motion**
-- **Axios**
-- **OpenAI API (via backend)**
-- **Vercel Deployment**
+- **React**
+- **Vite**
+- **JavaScript (ES6+)**
+- **Axios** (API communication)
+- **CSS**
 
 ---
 
@@ -36,60 +33,37 @@ Frontend URL: https://robo-frontend-teal.vercel.app/
 ```
 frontend/
 │
-├── public/
 ├── src/
-│   ├── assets/          # Icons and images
-│   ├── styles/          # Global and component styles
+│   ├── assets/             # Icons and static images
 │   ├── utils/
-│   │   └── api.js       # Axios client to backend
-│   ├── App.jsx          # Main component
-│   ├── App.css          # Global styles
-│   └── main.jsx         # Entry point
+│   │   └── api.js           # Axios instance + API calls
+│   ├── App.jsx              # Main UI and logic
+│   ├── App.css
+│   ├── main.jsx
 │
-├── .gitignore
+├── public/
 ├── index.html
 ├── package.json
-└── vite.config.js
+└── README.md
 ```
 
 ---
 
-## ⚙️ Setup Instructions (Local Development)
+## ▶️ Run Frontend (Local Development)
 
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/MananBagadi100/Robo-frontend
-cd frontend
-```
-
-### 2. Install Dependencies
+### 1. Install dependencies
 
 ```bash
 npm install
 ```
 
-### 3. Create Environment File
-
-Create a `.env` file in the root:
-
-```
-VITE_API_BASE=https://robo-backend.vercel.app/
-```
-
-Example:
-
-```
-VITE_API_BASE=https://your-backend.vercel.app
-```
-
-### 4. Start Development Server
+### 2. Start development server
 
 ```bash
 npm run dev
 ```
 
-Vite will start the frontend on:
+The frontend runs on:
 
 ```
 http://localhost:5173
@@ -99,57 +73,62 @@ http://localhost:5173
 
 ## 🔗 Backend Integration
 
-The frontend talks to the backend using the value in:
+The frontend sends requests to the backend API:
 
 ```
-VITE_API_BASE
+POST http://localhost:3000/api/ai/generate
 ```
 
-Requests are sent through `/utils/api.js`.
+Request body example:
 
-Make sure your backend is live before running the frontend.
-
----
-
-## 🧪 Build for Production
-
-```bash
-npm run build
-```
-
-Preview the production build locally:
-
-```bash
-npm run preview
+```json
+{
+  "prompt": "Generate a social media post for a product launch"
+}
 ```
 
 ---
 
-## ☁️ Deployment (Vercel)
+## ⚠️ Error Handling & Rate Limiting
 
-1. Push code to GitHub  
-2. Import the frontend repo in Vercel  
-3. Add environment variable:  
-   ```
-   VITE_API_BASE=https://robo-backend.vercel.app/
-   ```
-4. Deploy 🎉
+- All **rate limiting is handled by the backend**
+- When the backend rate limit is exceeded, it responds with:
 
----
+```
+HTTP 429 – Too Many Requests
+```
 
-## 📄 Assignment Summary
+- The frontend:
+  - Reads the error message sent by the backend
+  - Displays a user-friendly message (e.g. *Usage limit reached, please try again later*)
+  - Does **not** implement its own rate-limiting logic
 
-This frontend is part of a full-stack AI-powered image + caption generator.  
-It demonstrates:
-
-- Strong UI/UX design  
-- Smooth animations & responsiveness  
-- Clean API integration  
-- Practical AI usage with real-world deployment  
-- Production-ready build workflow  
+This keeps the frontend lightweight and ensures all request control is centralized on the server.
 
 ---
 
-## 👤 Author  
+## 🧠 How the Frontend Works (High-level)
+
+1. User enters a prompt and clicks **Generate**
+2. Axios sends a POST request to the backend
+3. On success:
+   - Caption, hashtags, and image are displayed
+4. On error:
+   - Backend error message is captured
+   - Appropriate message is shown to the user (400, 429, 500, etc.)
+
+---
+
+## 🚀 Production Notes
+
+- Update the backend API base URL in `src/utils/api.js` to point to your deployed backend endpoint
+- The frontend is compatible with:
+  - **Vercel**
+  - **Netlify**
+  - **Cloudflare Pages**
+
+---
+
+## 👤 Author
+
 Manan Bagadi
-
