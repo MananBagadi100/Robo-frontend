@@ -2,8 +2,6 @@ import { useState } from "react";
 import "./App.css";
 import { generatePost } from "./utils/api";
 import * as motion from "motion/react-client"
-import { scale } from "motion";
-import RegenerateIcon from './assets/add.png'
 
 function App() {
     const [prompt, setPrompt] = useState("");
