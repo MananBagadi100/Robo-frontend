@@ -11,6 +11,7 @@ function App() {
     const [serverError , setServerError] = useState('') //state to store server error (if any)
 
     const handleGenerate = async () => {
+        setServerError('')      //resetting the server error to empty after every click 
         if (!prompt.trim()) return; //to remove whitespaces at starting and end
 
         if (prompt.length < 20) {
@@ -57,7 +58,7 @@ function App() {
         link.download = "post.png";
         link.click();
     };
-    console.log('the server error is ',serverError)
+    console.log('(frontend is printing this!) the server error is ',serverError)
     return (
         <div className="app-container">
             <motion.h1 
@@ -114,8 +115,8 @@ function App() {
                     <h2 className="caption">{result.caption}</h2>
 
                     <div className="hashtags">
-                        {result.hashtags.map((tag, i) => (
-                            <span key={i} className="tag">
+                        {result.hashtags.map((tag) => (
+                            <span key={tag} className="tag">
                                 {tag}
                             </span>
                         ))}
