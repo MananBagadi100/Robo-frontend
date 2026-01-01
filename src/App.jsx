@@ -22,17 +22,26 @@ function App() {
         setResult(null);        //reset the result if re-prompting
 
         try {
-            const response = await generatePost(prompt);
-            if (response.status === 200) {       // If api successful
+            let response = await generatePost(prompt);
+            if (response.status === 200) {       // If api successfully return response
                 setResult(response.data)
                 console.log(response.data)
+            }
+            else if (response.status === 202) {
+                console.log(response.data)
+                while (response.status !== 200) {   //Loop runs tills api returns successful response 
+                    setTimeout(async () => {
+                        console.log('WAITING : ',response.data)
+                        response = await generatePost(prompt)
+                    },response.data.waitTime_in_ms)
+                }
             }
         } 
         catch (error) {
             if (error.response) {
                 setServerError(error.response.data.msg)
             }
-            else {
+            else {          //Some un expected problem occured (not backend error messages)
                 setServerError('Something went wrong !')
             }
         }
