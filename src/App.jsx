@@ -11,32 +11,50 @@ function App() {
     const [serverError , setServerError] = useState('') //state to store server error (if any)
 
     const handleGenerate = async () => {
-        setServerError('')      //resetting the server error to empty after every click 
-        if (!prompt.trim()) return; //to remove whitespaces at starting and end
+        setServerError('')      //resetting the server error after every click 
+        if (!prompt.trim()) return; //to remove whitespaces at either end
 
         if (prompt.length < 20) {
             setPromptLengthError(true)
             return     //do not send req if prompt has less than 20 charecters
         }
-        setLoading(true);
-        setResult(null);        //reset the result if re-prompting
+        setLoading(true)
+        setResult(null)      //reset the result if re-prompting
+        
+        const startTime = Date.now() 
+        const MAX_WAIT_MS = 60 * 1000 //max time limit 
 
         try {
-            const response = await generatePost(prompt);
-            if (response.status === 200) {       // If api successful
-                setResult(response.data)
-                console.log(response.data)
-            }
+                //this function keeps trying until success (200) or till max timeout
+                async function handleResult() {
+                    //stop sending requests if max time limit exceeded
+                    if (Date.now() - startTime >= MAX_WAIT_MS) {
+                        setLoading(false)
+                        setServerError("Taking too long (over 1 minute). Please try again.")
+                        return          //stops execution immediately
+                    }
+                    const response = await generatePost(prompt)
+                    if (response.status === 200) {  //Successful api response
+                        console.log('the received result is ',response.data)
+                        setResult(response.data)
+                        setLoading(false)
+                        return 
+                    }
+                    if (response.status === 202) {  //If same prompt req (from another user/tab) is processing
+                        setTimeout(handleResult,response.data.waitTime_in_ms)
+                        return
+                    }
+                }
+            handleResult()  //Calling the function once
         } 
         catch (error) {
             if (error.response) {
                 setServerError(error.response.data.msg)
             }
-            else {
+            else {          //Some un expected problem occured (not backend error messages)
                 setServerError('Something went wrong !')
             }
         }
-        setLoading(false);
     };
     //handle copy captions
     const handleCopyCaption = () => {
@@ -59,6 +77,7 @@ function App() {
         link.click();
     };
     console.log('(frontend is printing this!) the server error is ',serverError)
+
     return (
         <div className="app-container">
             <motion.h1 
