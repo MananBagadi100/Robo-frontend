@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import { generatePost } from "./utils/api";
+import { generatePost , fetchGenerationStatus} from "./utils/api";
 import * as motion from "motion/react-client"
 
 function App() {
@@ -25,27 +25,37 @@ function App() {
         const MAX_WAIT_MS = 60 * 1000 //max time limit 
 
         try {
-                //this function keeps trying until success (200) or till max timeout
-                async function handleResult() {
-                    //stop sending requests if max time limit exceeded
-                    if (Date.now() - startTime >= MAX_WAIT_MS) {
-                        setLoading(false)
-                        setServerError("Taking too long (over 1 minute). Please try again.")
-                        return          //stops execution immediately
-                    }
-                    const response = await generatePost(prompt)
-                    if (response.status === 200) {  //Successful api response
-                        console.log('the received result is ',response.data)
-                        setResult(response.data)
-                        setLoading(false)
-                        return 
-                    }
-                    if (response.status === 202) {  //If same prompt req (from another user/tab) is processing
-                        setTimeout(handleResult,response.data.waitTime_in_ms)
+                let response = await generatePost(prompt)     //runs once by default
+                if (response.status === 200) {          //Successful api response
+                    console.log('the received result is ',response.data)
+                    setResult(response.data)
+                    setLoading(false)
+                    return 
+                }
+                //If a primary request or job creator req is processing
+                if (response.status === 202) {  
+                    //this function keeps trying until success (200) or if max time limit is exceeded
+                    const pollGenerationStatus = async () => {
+                        //first we check if the max time limit is exceeded or not
+                        if (Date.now() - startTime >= MAX_WAIT_MS) {
+                            setLoading(false)
+                            setServerError("Taking too long (over 1 minute). Please try again.")
+                            return          //stops execution 
+                        }
+                        // then we send api request to check if the primary req is done or still processing 
+                        response = await fetchGenerationStatus(response.data.jobId)
+                        //if request successful
+                        if (response.status === 200) {
+                            setResult(response.data)
+                            setLoading(false)
+                            return
+                        }
+                        //then we call this function again to check time limit and send req again
+                        setTimeout(pollGenerationStatus,response.data.waitTime_in_ms)
                         return
                     }
+                    pollGenerationStatus() //calling the function once
                 }
-            handleResult()  //Calling the function once
         } 
         catch (error) {
             if (error.response) {
