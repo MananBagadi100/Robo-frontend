@@ -90,7 +90,6 @@ function App() {
         link.download = "post.png";
         link.click();
     };
-    // console.log('(frontend is printing this!) the server error is ',serverError)
 
     return (
         <>
@@ -99,93 +98,6 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/admin" element={<Admin />} />
                 </Routes>
-                {/* <section className="app-top-section-area">
-                    <Link to='/admin' className="app-top-section-admin-btn">Admin Dashboard</Link>
-                </section>
-                
-                <div className="app-container">
-                    <motion.h1 
-                        initial={{opacity:0,scale:0.8}}
-                        animate={{opacity:1,scale:1}}
-                        transition={{duration:1}}
-                        className="app-title"
-                    >
-                        AI Social Media Post Creator
-                    </motion.h1>                        
-
-                    <motion.div 
-                        initial={{opacity:0,y:30}}
-                        animate={{opacity:1,y:0}}
-                        transition={{duration:0.8,delay:0.2}}
-                        viewport={{once:true}}
-                        className="card"
-                    >
-                        <div className="subheading-text-wrapper">
-                        <span className="subheading-text">Create your next social media post with just One Click !</span>
-                        </div>
-                        <textarea
-                            className="prompt-input"
-                            placeholder="Describe your idea..."
-                            value={prompt}
-                            onChange={(e) => setPrompt(e.target.value)}
-                        />
-
-                        {promptLengthError ? 
-                            <div className="prompt-error-msg">Prompt must have minimum 20 charecters</div> 
-                            : '' }
-
-                        {serverError && (
-                            <div className="server-error-msg">{serverError}</div>
-                        )}
-
-                        <div className="generate-btn-wrapper">
-                        <motion.button
-                            whileHover={{scale:1.1}}
-                            whileTap={{scale:0.8}}
-                            transition={{duration:0.1,ease:"easeOut"}}
-                            className="generate-btn"
-                            onClick={handleGenerate}
-                            disabled={loading}
-                        >
-                            {loading ? "Generating..." : "Generate"}
-                        </motion.button>
-                        </div>
-                    </motion.div>
-
-                    
-                    {result && (       
-                        <div className="result-card">
-                            <h2 className="caption">{result.caption}</h2>
-
-                            <div className="hashtags">
-                                {result.hashtags.map((tag) => (
-                                    <span key={tag} className="tag">
-                                        {tag}
-                                    </span>
-                                ))}
-                            </div>
-
-                            <img
-                                className="result-image"
-                                src={`data:image/png;base64,${result.imageBase64}`}
-                                alt="Generated"
-                            />
-                            <div className="actions">
-                                <button className="action-btn" onClick={handleCopyCaption}>
-                                    Copy Caption
-                                </button>
-
-                                <button className="action-btn" onClick={handleCopyHashtags}>
-                                    Copy Hashtags
-                                </button>
-
-                                <button className="action-btn" onClick={handleDownload}>
-                                    Download Image
-                                </button>
-                            </div>
-                        </div>
-                    )}
-                </div> */}
             </BrowserRouter>
         </>
     );
