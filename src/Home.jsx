@@ -2,8 +2,7 @@ import { useState } from "react";
 import "./Home.css";
 import { generatePost , fetchGenerationStatus} from "./utils/api";
 import * as motion from "motion/react-client"
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import Admin from "./Admin";
+import { Link } from "react-router-dom";
 
 
 function Home() {
