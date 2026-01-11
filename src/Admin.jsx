@@ -14,21 +14,21 @@ const Admin = () => {
                     <div className="admin-page-metrics-box">
                         <img src={StopWatch} alt="Not Found" className="admin-page-metrics-image" />
                         <div className="admin-page-metrics-details-area">
-                            <span className="admin-page-metrics-title">Avg Tokans Consumed</span>
+                            <span className="admin-page-metrics-title">Avg Tokens per Request</span>
                             <span className="admin-page-metrics-value">2</span>
                         </div>
                     </div>
                     <div className="admin-page-metrics-box">
                         <img src={SpeedIcon} alt="Not Found" className="admin-page-metrics-image" />
                         <div className="admin-page-metrics-details-area">
-                            <span className="admin-page-metrics-title">Avg Tokans Consumed</span>
+                            <span className="admin-page-metrics-title">Request Latency</span>
                             <span className="admin-page-metrics-value">2</span>
                         </div>
                     </div>                  
                     <div className="admin-page-metrics-box">
                         <img src={MoneyIcon} alt="Not Found" className="admin-page-metrics-image" />
                         <div className="admin-page-metrics-details-area">
-                            <span className="admin-page-metrics-title">Avg Tokans Consumed</span>
+                            <span className="admin-page-metrics-title">Total API Spent</span>
                             <span className="admin-page-metrics-value">2</span>
                         </div>
                     </div>
@@ -36,7 +36,7 @@ const Admin = () => {
 
                 <section className="admin-page-prompt-details-section">
                     <h2 className="admin-page-prompt-details-heading">
-                        Prompt Details
+                        Request History
                     </h2>
 
                     {/* For Mobile only */}

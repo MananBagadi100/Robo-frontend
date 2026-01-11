@@ -3,8 +3,9 @@
     flex-direction: column;
     width: 100%;
     padding: 24px 16px;
-    background-color: whitesmoke;
+    /* background-color: whitesmoke; */
     box-sizing: border-box;
+    background: linear-gradient(to bottom,#f8fafc 0%,#f3f4f6 100%);
 }
 
 .admin-page-heading-section {
@@ -25,20 +26,31 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 8px;
     gap: 16px;
     border-radius: 16px;
     box-sizing: border-box;
+}
+
+.admin-page-metrics-box:nth-of-type(1) {
+    background-color: purple;
+}
+
+.admin-page-metrics-box:nth-of-type(2) {
+    background-color: rgb(61, 148, 104);
+}
+
+.admin-page-metrics-box:nth-of-type(3) {
+    background-color: #0d6efd;
 }
 
 .admin-page-metrics-box {
     display: flex;
     flex-direction: row;
     width: 100%;
-    background-color: #0d6efd;
     border-radius: 16px;
     padding: 12px 16px;
     align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     box-sizing: border-box;
 }
 
@@ -108,11 +120,17 @@
     .admin-page-metrics-section {
         flex-direction: row;
         margin-bottom: 24px;
-        background-color: inherit;
+        justify-content: space-between;
     }
 
     .admin-page-metrics-box {
         padding: 24px 16px;
+        transition-duration: 0.2s;
+    }
+
+    .admin-page-metrics-box:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
     }
 
     .admin-page-metrics-details-area {
@@ -152,7 +170,6 @@
     .admin-prompt-details-table {
         border-collapse: collapse;
         border-radius: 16px;
-        padding: 8px;
     }
      th , td {
         padding: 16px;
@@ -163,15 +180,19 @@
         background-color: rgb(243, 243, 243);
     }
 
-    /* tr:nth-of-type(n+2) {
-        background-color: rgb(149, 67, 67);
-    } */
+    thead th {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
 
     th {
         font-size: 18px;
         font-weight: 600;
-        background-color: #f9fbff;
+        /* background-color: #f9fbff; */
         color: #111827;
+        background-color: #eef2ff; /* soft blue/gray */
+        border-bottom: 2px solid #dbeafe;
     }
 
     .table-prompt-column{
