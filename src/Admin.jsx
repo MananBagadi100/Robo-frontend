@@ -2,6 +2,7 @@ import './Admin.css'
 import StopWatch from './assets/stopwatch-outline.svg'
 import MoneyIcon from './assets/MoneyIcon.svg'
 import SpeedIcon from './assets/speedIcon.svg'
+import PromptDetailsCard from './PromptDetailsCard'
 const Admin = () => {
     return (
         <>
@@ -37,8 +38,51 @@ const Admin = () => {
                     <h2 className="admin-page-prompt-details-heading">
                         Prompt Details
                     </h2>
-                    <div className="admin-page-prompt-details-content-area">
-                        
+
+                    {/* For Mobile only */}
+                    <ul className="admin-page-prompt-details-list-mobile">
+                        <PromptDetailsCard />
+                    </ul>
+
+                    <div className="admin-prompt-details-table-wrapper">
+                        <table className='admin-prompt-details-table'>
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Prompt</th>
+                                    <th>Status</th>
+                                    <th>Tokens Consumed</th>
+                                    <th>Request Latency</th>
+                                    <th>Cost</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td><p className='table-prompt-column'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt nulla consequuntur architecto repellat sunt optio commodi, reprehenderit quibusdam nihil mollitia fugit rem blanditiis, numquam perferendis odio velit facere, necessitatibus nemo?</p></td>
+                                    <td>DONE</td>
+                                    <td>3000</td>
+                                    <td>27000</td>
+                                    <td>2.7</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td><p className='table-prompt-column'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur, blanditiis reprehenderit quos, quam perferendis quod nobis fugit laboriosam officiis molestiae consequuntur maiores modi assumenda numquam architecto repellat error et qui?Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae ipsa, laboriosam optio enim eveniet ipsum nulla, officia incidunt veniam, ex eius. Quod eum sequi ab voluptatibus quaerat. Velit, commodi cum?</p></td>
+                                    <td>PENDING</td>
+                                    <td>2300</td>
+                                    <td>24000</td>
+                                    <td>1.5</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td><p id='testing'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt nulla consequuntur architecto repellat sunt optio commodi, reprehenderit quibusdam nihil mollitia fugit rem blanditiis, numquam perferendis odio velit facere, necessitatibus nemo?</p></td>
+                                    <td>FAILED</td>
+                                    <td>1000</td>
+                                    <td>24000</td>
+                                    <td>2.8</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </section>
             </main>

@@ -1,0 +1,63 @@
+.prompt-card-wrapper-mobile {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    list-style: none;
+    padding: 16px;
+    border: 1px solid grey;
+    background-color: white;
+    border-radius: 16px;
+    box-sizing: border-box;
+}
+.prompt-card-mobile {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+    box-sizing: border-box;
+}
+.prompt-card-header-mobile p {
+    text-align: justify;
+    hyphens: auto;
+    display: -webkit-box;
+    line-clamp: 4;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.prompt-card-details-section-mobile {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    line-height: 1.2;
+}
+.prompt-row-card-desktop {
+    display: none;
+}
+
+/* Keep table layout working on desktop */
+@media (min-width: 768px) {
+    .prompt-card-wrapper-mobile {
+        display: none;
+    }
+    .prompt-row-card-desktop {
+        display: table-row;
+    }
+    .best {
+        /* optional: gives the cell room; parent table/colgroup can refine widths */
+        max-width: 0; /* helps clamping inside table cells */
+    }
+
+    .prompt-clamp-desktop {
+        margin: 0;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        line-clamp: 3;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-word;
+        hyphens: auto;
+        text-align: justify;
+    }
+}
