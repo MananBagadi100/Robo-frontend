@@ -1,5 +1,6 @@
 import './PromptDetailsMobile.css'
-const PromptDetailsMobile = ({item}) => {
+import { convertMicronsToINR, convertToSeconds } from './utils/formatters'
+const PromptDetailsMobile = ({item , micronsPerUsd}) => {
     return (
         <li className="prompt-card-wrapper-mobile">
             <article className="prompt-card-mobile">
@@ -9,8 +10,8 @@ const PromptDetailsMobile = ({item}) => {
                 </header>
                 <section className='prompt-card-details-section-mobile'>
                     <p><strong>Tokens Consumed :</strong>{item.total_tokens_consumed}</p>
-                    <p><strong>Request Latency :</strong>{item.latency_ms}</p>
-                    <p><strong>Cost Incurred :</strong>{item.openai_cost_microns}</p>
+                    <p><strong>Request Latency :</strong>{convertToSeconds(item.latency_ms)} s</p>
+                    <p><strong>Cost Incurred : </strong>₹{convertMicronsToINR(item.openai_cost_microns,micronsPerUsd)}</p>
                 </section>
             </article>
         </li>

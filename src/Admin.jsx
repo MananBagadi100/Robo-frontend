@@ -16,6 +16,7 @@ import PromptDetailsMobile from './PromptDetailsMobile';
 const Admin = () => {
     const [errorState, setErrorState] = useState(false)
     const [dashboardMetrics , setDashboardMetrics] = useState(null)
+    const [ micronsPerUsd , setMicronsPerUsd] = useState(null)  //for storing how many microns in 1 usd (for consistent conversion across systems)
     function handleClose () {
         setErrorState(false)    //resetting to normal
     }
@@ -26,6 +27,7 @@ const Admin = () => {
                 console.log('the response is ',response)
                 console.log('the response array is ',response.data.rows)
                 setDashboardMetrics(response.data)
+                setMicronsPerUsd(response.data.currency.micronsPerUsd)
             }
             catch (error) {
                 console.log('Error',error)
@@ -76,7 +78,7 @@ const Admin = () => {
                             {/* Component which renders cards on mobile only */}
                             {   
                                 dashboardMetrics !== null ? dashboardMetrics.rows.map((item) => (
-                                    <PromptDetailsMobile key={item.id} item={item}/> 
+                                    <PromptDetailsMobile key={item.id} item={item} micronsPerUsd={micronsPerUsd}/> 
                                 )) : 
                                     <div>Loading ...</div>
                             }
@@ -98,7 +100,7 @@ const Admin = () => {
                                     {/* Component which renders for desktop only */}
                                     {   
                                         dashboardMetrics !== null ? dashboardMetrics.rows.map((item) => (
-                                           <PromptDetailsTableCard key={item.id} item={item}/> 
+                                           <PromptDetailsTableCard key={item.id} item={item} micronsPerUsd={micronsPerUsd}/> 
                                         )) : 
                                             <tr>
                                                 <td colSpan="6" style={{textAlign: 'center'}}>Loading...</td>

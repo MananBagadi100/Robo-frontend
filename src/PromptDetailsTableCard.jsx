@@ -1,15 +1,16 @@
 import './PromptDetailsTableCard.css'
-const PromptDetailsTableCard = ({item}) => {
+import { convertMicronsToINR, convertToSeconds } from './utils/formatters'
+const PromptDetailsTableCard = ({item , micronsPerUsd}) => {
     return (
         <>
             {/* For Desktop */}
             <tr>
                 <td>{item.id}</td>
                 <td><p className='table-prompt-column'>{item.prompt}</p></td>
-                <td>{item.status}</td>
+                <td className='table-prompt-column-done'>{item.status}</td>
                 <td>{item.total_tokens_consumed}</td>
-                <td>{item.latency_ms}</td>
-                <td>{item.openai_cost_microns}</td>
+                <td>{convertToSeconds(item.latency_ms)} s</td>
+                <td>{convertMicronsToINR(item.openai_cost_microns,micronsPerUsd)}</td>
             </tr>  
         </>
     )
