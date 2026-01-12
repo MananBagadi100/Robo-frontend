@@ -1,0 +1,33 @@
+.prompt-card-wrapper-mobile {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    list-style: none;
+    padding: 16px;
+    border: 1px solid grey;
+    background-color: white;
+    border-radius: 16px;
+    box-sizing: border-box;
+}
+.prompt-card-mobile {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+    box-sizing: border-box;
+}
+.prompt-card-header-mobile p {
+    text-align: justify;
+    hyphens: auto;
+    display: -webkit-box;
+    line-clamp: 4;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.prompt-card-details-section-mobile {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    line-height: 1.2;
+}
