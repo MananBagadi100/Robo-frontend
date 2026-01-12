@@ -1,0 +1,24 @@
+.prompt-row-card-desktop {
+    display: contents;
+}
+
+td {
+    padding: 16px;
+    border:  1px solid rgba(0,0,0,0.1);
+}
+
+tr:nth-of-type(2n) {
+    background-color: rgb(243, 243, 243);
+}
+
+.table-prompt-column{
+    text-align: justify;
+    hyphens: auto;
+    display: -webkit-box;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2;
+}

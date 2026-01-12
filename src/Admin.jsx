@@ -11,6 +11,7 @@ import PromptDetailsTableCard from './PromptDetailsTableCard'
 import { useEffect, useState } from 'react'
 import { fetchAdminDashboardDetails } from './utils/api'
 import { Link } from 'react-router-dom';
+import PromptDetailsMobile from './PromptDetailsMobile';
 
 const Admin = () => {
     const [errorState, setErrorState] = useState(false)
@@ -72,8 +73,13 @@ const Admin = () => {
 
                         {/* For Mobile only */}
                         <ul className="admin-page-prompt-details-list-mobile">
-                            {/* <PromptDetailsCard /> */}
-                            <li>Refer desktop</li>
+                            {/* Component which renders cards on mobile only */}
+                            {   
+                                dashboardMetrics !== null ? dashboardMetrics.rows.map((item) => (
+                                    <PromptDetailsMobile key={item.id} item={item}/> 
+                                )) : 
+                                    <div>Loading ...</div>
+                            }
                         </ul>
 
                         <div className="admin-prompt-details-table-wrapper">
@@ -89,7 +95,8 @@ const Admin = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {
+                                    {/* Component which renders for desktop only */}
+                                    {   
                                         dashboardMetrics !== null ? dashboardMetrics.rows.map((item) => (
                                            <PromptDetailsTableCard key={item.id} item={item}/> 
                                         )) : 

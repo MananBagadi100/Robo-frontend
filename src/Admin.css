@@ -98,6 +98,12 @@
     margin-bottom: 16px;
 }
 
+.admin-page-prompt-details-list-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
 .admin-prompt-details-table-wrapper {
     display: none;
 }
