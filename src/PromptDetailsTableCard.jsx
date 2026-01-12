@@ -1,7 +1,17 @@
 import './PromptDetailsCard.css'
-const PromptDetailsCard = () => {
+const PromptDetailsTableCard = ({item}) => {
     return (
         <>
+            {/* For Desktop */}
+            <tr>
+                <td>{item.id}</td>
+                <td><p className='table-prompt-column'>{item.prompt}</p></td>
+                <td>{item.status}</td>
+                <td>{item.total_tokens_consumed}</td>
+                <td>{item.latency_ms}</td>
+                <td>{item.openai_cost_microns}</td>
+            </tr>
+
             {/* For Mobile */}
             <li className="prompt-card-wrapper-mobile">
                 <article className="prompt-card-mobile">
@@ -17,20 +27,7 @@ const PromptDetailsCard = () => {
                 </article>
             </li>
             
-            {/* For Desktop */}
-            <tr className='prompt-row-card-desktop'>
-                <td>12</td>
-                <td className='best'>
-                    <p className='prompt-clamp-desktop'>
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro qui veniam explicabo optio sit hic quasi officiis quam expedita iusto inventore culpa facilis in deleniti asperiores iure eligendi, accusantium libero?
-                    </p>
-                </td>
-                <td>DONE</td>
-                <td>3000</td>
-                <td>27000</td>
-                <td>2.7</td>
-            </tr>
         </>
     )
 }
-export default PromptDetailsCard
+export default PromptDetailsTableCard

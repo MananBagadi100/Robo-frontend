@@ -43,12 +43,8 @@
     .prompt-row-card-desktop {
         display: table-row;
     }
-    .best {
-        /* optional: gives the cell room; parent table/colgroup can refine widths */
-        max-width: 0; /* helps clamping inside table cells */
-    }
 
-    .prompt-clamp-desktop {
+    /* .prompt-clamp-desktop {
         margin: 0;
         display: -webkit-box;
         -webkit-box-orient: vertical;
@@ -59,5 +55,26 @@
         word-break: break-word;
         hyphens: auto;
         text-align: justify;
+    } */
+
+    td {
+        padding: 16px;
+        border:  1px solid rgba(0,0,0,0.1);
+    }
+
+    tr:nth-of-type(2n) {
+        background-color: rgb(243, 243, 243);
+    }
+
+    .table-prompt-column{
+        text-align: justify;
+        hyphens: auto;
+        display: -webkit-box;
+        line-clamp: 3;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.2;
     }
 }
