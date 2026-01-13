@@ -15,6 +15,9 @@ export function convertToSeconds (milliSecondsValue) {
     return valueInSeconds
 }
 
-
+//to convert tokens into a whole value
+export function convertTokensUsedToWholeValue (tokenValue) {
+    return parseFloat(tokenValue).toFixed(0)
+}
 
 
