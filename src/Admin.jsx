@@ -9,12 +9,13 @@ import Box from '@mui/material/Box';
 import StopWatch from './assets/stopwatch-outline.svg'
 import MoneyIcon from './assets/MoneyIcon.svg'
 import SpeedIcon from './assets/speedIcon.svg'
+import BackArrow from './assets/backArrowBtn.svg'
 import PromptDetailsTableCard from './PromptDetailsTableCard'
 import { useEffect, useState } from 'react'
 import { fetchAdminDashboardDetails } from './utils/api'
 import { Link } from 'react-router-dom';
 import PromptDetailsMobile from './PromptDetailsMobile';
-import { convertMicronsToINR } from './utils/formatters';
+import { convertMicronsToINR, convertTokensUsedToWholeValue, convertToSeconds } from './utils/formatters';
 
 const Admin = () => {
     const [errorState, setErrorState] = useState(false)
@@ -45,29 +46,37 @@ const Admin = () => {
             return (
                 <>
                     <main className="admin-page-content-area">
+                        <div className="admin-page-go-to-home-wrapper">
+                            <Link className='admin-page-go-back-link' to='/'>
+                                <img src={BackArrow} alt="Not Found"/>
+                                <div>Back to Homepage</div>
+                            </Link>
+                        </div>
+
                         <header className="admin-page-heading-section">
                             <h1 className='admin-page-heading'>Admin Dashboard</h1>
                         </header>
+
                         <section className="admin-page-metrics-section">
                             <div className="admin-page-metrics-box">
                                 <img src={StopWatch} alt="Not Found" className="admin-page-metrics-image" />
                                 <div className="admin-page-metrics-details-area">
                                     <span className="admin-page-metrics-title">Avg Tokens per Request</span>
-                                    <span className="admin-page-metrics-value">{dashboardMetrics.summary.avgTokens}</span>
+                                    <span className="admin-page-metrics-value">{convertTokensUsedToWholeValue(dashboardMetrics.summary.avgTokens)}</span>
                                 </div>
                             </div>
                             <div className="admin-page-metrics-box">
                                 <img src={SpeedIcon} alt="Not Found" className="admin-page-metrics-image" />
                                 <div className="admin-page-metrics-details-area">
                                     <span className="admin-page-metrics-title">Request Latency</span>
-                                    <span className="admin-page-metrics-value">{dashboardMetrics.summary.avgLatency}</span>
+                                    <span className="admin-page-metrics-value">{convertToSeconds(dashboardMetrics.summary.avgLatency)} s</span>
                                 </div>
                             </div>                  
                             <div className="admin-page-metrics-box">
                                 <img src={MoneyIcon} alt="Not Found" className="admin-page-metrics-image" />
                                 <div className="admin-page-metrics-details-area">
                                     <span className="admin-page-metrics-title">Total API Spent</span>
-                                    <span className="admin-page-metrics-value">{convertMicronsToINR(dashboardMetrics.summary.totalSpendMicrons,dashboardMetrics.currency.micronsPerUsd)}</span>
+                                    <span className="admin-page-metrics-value">₹ {convertMicronsToINR(dashboardMetrics.summary.totalSpendMicrons,dashboardMetrics.currency.micronsPerUsd)}</span>
                                 </div>
                             </div>
                         </section>

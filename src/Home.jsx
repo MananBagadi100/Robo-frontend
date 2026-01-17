@@ -93,7 +93,7 @@ function Home() {
     return (
         <>
             <section className="app-top-section-area">
-                <Link to='/admin' className="app-top-section-admin-btn">Admin Dashboard</Link>
+                <Link to='/login' className="app-top-section-admin-btn">Admin Dashboard</Link>
             </section>
             
             <div className="app-container">
