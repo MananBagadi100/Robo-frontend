@@ -3,7 +3,6 @@
     flex-direction: column;
     width: 100%;
     padding: 24px 16px;
-    /* background-color: whitesmoke; */
     box-sizing: border-box;
     background: linear-gradient(to bottom,#f8fafc 0%,#f3f4f6 100%);
 }
@@ -22,6 +21,12 @@
     border-radius: 16px;
     padding: 4px 12px;
     height: 100%;
+}
+
+.admin-page-go-back-link:hover {
+    transform: translateY(-1px);
+    transition: ease-out;
+    transition-duration: 0.2s;
 }
 
 .admin-page-go-back-link div {

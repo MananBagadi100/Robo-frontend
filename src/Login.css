@@ -1,0 +1,117 @@
+.login-full-page-container {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 16px;
+    margin: 48px 0;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+.login-dialog-box {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 16px 12px;
+    border:  1px solid black;
+    border-radius: 16px;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+.login-dialog-box-header {
+    display: flex;
+    justify-content: center;
+}
+
+.login-dialog-box-header h1 {
+    font-size: 20px;
+}
+
+.login-dialog-box-info-area {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 12px;
+}
+
+.login-dialog-box-form-area {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.login-form-fields {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form-fields input {
+    height: 28px;
+    border-radius: 4px;
+    margin-top: 4px;
+    border: 1 px solid gray;
+}
+
+.login-form-fields label {
+    margin-left: 4px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.login-submit-btn-wrapper {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-submit-btn {
+    background-color: var(--primary-btn-bg-color);
+    color: var(--primary-btn-text-color);
+    padding: 8px 24px;
+    border-radius: 16px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.login-submit-btn:hover {
+    background-color: var(--primary-btn-hover-bg-color);
+}
+
+.login-dialog-box-form-area p {
+    display: flex;
+    color: gray;
+    font-size: 12px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+}
+
+@media (min-width: 768px) {
+    .login-dialog-box {
+        max-width: 400px;
+        padding: 24px 16px;
+    }
+
+    .login-dialog-box-header h1 {
+        font-size: 24px;
+    }
+
+    .login-dialog-box-info-area {
+        margin-top: 16px;
+    }
+
+    .login-form-fields label {
+        font-size: 16px;
+    }
+
+    .login-form-fields input {
+        height: 32px;
+    }
+
+    .login-submit-btn {
+        padding: 12px 40px;
+    }
+    
+}
