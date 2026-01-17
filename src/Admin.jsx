@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 import StopWatch from './assets/stopwatch-outline.svg'
 import MoneyIcon from './assets/MoneyIcon.svg'
 import SpeedIcon from './assets/speedIcon.svg'
-import BackArrow from './assets/BackArrowBtn.svg'
+import BackArrow from './assets/backArrowBtn.svg'
 import PromptDetailsTableCard from './PromptDetailsTableCard'
 import { useEffect, useState } from 'react'
 import { fetchAdminDashboardDetails } from './utils/api'
